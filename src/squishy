@@ -1,0 +1,11 @@
+-- Main import declarations. One line per file; paths should be relative to the
+-- directory where this squishy file is located. Remember to use .lua extension,
+-- not .moon! Each file you want to output requires its own squishy in separate
+-- directories.
+--
+-- Main "example-file.lua"
+
+-- Set output to the path (relative to the main repo directory) where you want
+-- the final .lua file to be output.
+Option "minify" "full"
+Output "dist/output.lua"

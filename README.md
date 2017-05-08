@@ -1,4 +1,4 @@
-## smhxx/MoonMod [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT) [![Latest Release](https://img.shields.io/github/release/smhxx/moonmod.svg?maxAge=1800)](https://github.com/smhxx/moonmod/releases)
+## MoonMod [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT) [![Latest Release](https://img.shields.io/github/release/smhxx/moonmod.svg?maxAge=1800)](https://github.com/smhxx/moonmod/releases)
 
 <img alt="Tabletop Simulator Logo" align="right" width="240" height="150" src="http://i.imgur.com/T0N1sLu.jpg" />
 
@@ -71,6 +71,8 @@ As mentioned above, MoonMod also contains some helpful libraries that could be u
 * `moonmod-core`: Basic useful stuff, applicable to just about any project. Includes things like callbacks and a couple small utility classes.
 * `moonmod-dice`: Allows you to interact in a richer way with dice objects, including detecting when they are rolled and doing things depending on the result.
 * `moonmod-board-ui`: Allows you to more easily manage buttons as a form of user interface, for example if you have an options/control board in your mod.
+
+If you have any custom MoonMod libraries you want to add, you can add them with `git submodule add git@github.com:<username>/<repo> libraries`.
 
 ### License
 
