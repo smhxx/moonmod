@@ -72,7 +72,7 @@ As mentioned above, MoonMod also contains some helpful libraries that could be u
 * `moonmod-dice`: Allows you to interact in a richer way with dice objects, including detecting when they are rolled and doing things depending on the result.
 * `moonmod-board-ui`: Allows you to more easily manage buttons as a form of user interface, for example if you have an options/control board in your mod.
 
-If you have any custom MoonMod libraries you want to add, you can add them with `git submodule add git@github.com:<username>/<repo> libraries`.
+If you have any custom MoonMod libraries you want to add, you can add them with `git submodule add https://github.com/<username>/<repo-name>.git libraries/<repo-name>`. (If you use SSH remotes, you may run into problems with CI testing, since Travis won't have your SSH keys in order to log in.)
 
 ### License
 
