@@ -8,7 +8,7 @@
 
 * **make** - General-purpose build utility. Available via `apt-get` or from [gnu.org](https://www.gnu.org/software/make/)
 * **moonc** - Moonscript compiler. Available from the `moonscript` package on `luarocks` or from [leafo/moonscript](https://github.com/leafo/moonscript).
-* **squish** - Lua code packager/minifier. Download and build from [LuaDist/squish](https://github.com/LuaDist/squish).
+* **squish** - Lua code packager/minifier. Download from [LuaDist/squish](https://github.com/LuaDist/squish). *Note that squish doesn't always play nice with newer versions of lua unless you've built with the LUA_COMPAT_5_1 option.*
 * **jq** - Command-line JSON manipulator. Available via `apt-get` or from [stedolan/jq](https://stedolan.github.io/jq/)
 * **busted** - Lua/MoonScript testing utility (optional). Available via `luarocks` or from [Olivine-Labs/busted](https://github.com/Olivine-Labs/busted).
 
