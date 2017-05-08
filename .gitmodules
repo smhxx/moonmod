@@ -1,3 +1,6 @@
 [submodule "libraries/moonmod-core"]
 	path = libraries/moonmod-core
 	url = git@github.com:smhxx/moonmod-core
+[submodule "libraries/moonmod-board-ui"]
+	path = libraries/moonmod-board-ui
+	url = https://github.com/smhxx/moonmod-board-ui.git
