@@ -56,7 +56,7 @@ Note that if you're running the Windows version of the game and developing in a 
 MoonMod's Makefile includes a bunch of useful productivity shortcuts. Here's what you're getting:
 
 * `make save`: Builds **everything** and creates a save file with your new code. If `.savefile` contains a file location, it will attempt to copy the output to that location as well. If you plan on using `make save`, make sure that:
-  * You have a valid-formatted save file located at `templates/save.json`
+  * You have a `templates/manifest.json` that points to (or assembles) a valid-formatted save file
   * If your mod includes a global script, one of your `squishy` config files outputs to `dist/global.lua`
   * If your mod includes object scripts, one of your `squishy` config files outputs to `dist/objects/<guid>.lua` for each separate object you want to attach a script to
 * `make dist`: Builds all of your distribution files, but **doesn't** attempt to inject them into your save template. Useful if your project is a library rather than a mod, or if you just want to make sure your code compiles correctly.
@@ -69,7 +69,6 @@ MoonMod's Makefile includes a bunch of useful productivity shortcuts. Here's wha
 As mentioned above, MoonMod also contains some helpful libraries that could be useful in your project. By default, they are all included, but you can easily remove any ones you don't need with `git rm`. The included libraries are:
 
 * `moonmod-core`: Basic useful stuff, applicable to just about any project. Includes things like callbacks and a couple small utility classes.
-* `moonmod-dice`: Allows you to interact in a richer way with dice objects, including detecting when they are rolled and doing things depending on the result.
 * `moonmod-board-ui`: Allows you to more easily manage buttons as a form of user interface, for example if you have an options/control board in your mod.
 
 If you have any custom MoonMod libraries you want to add, you can add them with `git submodule add https://github.com/<username>/<repo-name>.git libraries/<repo-name>`. (If you use SSH remotes, you may run into problems with CI testing, since Travis won't have your SSH keys in order to log in.)

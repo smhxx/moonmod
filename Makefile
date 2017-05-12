@@ -18,6 +18,8 @@ get_bld_squishy = $(if $(call get_src_squishy,"$(1)"),$(call convert_dir,$(call 
 all_src_outputs = $(foreach squishy,$(all_src_squishies),$(call get_output,"$(squishy)"))
 all_lib_outputs = $(foreach squishy,$(all_lib_squishies),$(call get_output,"$(squishy)"))
 
+all_manifest_inputs = $(shell echo $$(sed -nr "s;^.*\"([^\"]*\.json)\".*;templates/\1;p" "templates/manifest.json"))
+
 .PHONY: save dist test testdist libraries resources alwayscheck
 .PRECIOUS: build/%.lua build/%/squishy dist/%.lua libraries/%
 
@@ -52,8 +54,10 @@ resources:
 	@if git commit -m "Updating resources"; then\
 		echo "Pushing to gh-pages...";\
 		git subtree push --prefix resources origin gh-pages;\
+		echo "Done!";\
+	else\
+		echo "Resources already up to date.";\
 	fi
-	@echo "Done!"
 
 # Build Rules
 build/%.lua: src/%.moon
@@ -72,12 +76,17 @@ libraries/%: alwayscheck
 
 alwayscheck:
 
-dist/save.json: templates/save.json $(call all_src_outputs)
-	@cp templates/save.json dist/save.json
+dist/save.json: templates/.save.json $(call all_src_outputs)
+	@cp templates/.save.json dist/save.json
 	@for source in $(call all_src_outputs); do\
 		/bin/bash templates/.import.sh $$source;\
 	done
-	@echo "Finished creating dist/save.json"
+	@echo "Finished creating save file"
+
+templates/.save.json: templates/manifest.json $(call all_manifest_inputs)
+	@echo "Building save template from manifest..."
+	@/bin/bash templates/.build.sh
+	@echo "Finished building save template"
 
 .SECONDEXPANSION:
 dist/%.lua: $$(call get_bld_squishy,$$@) $$(call get_inputs,$$(call get_src_squishy,$$@))
