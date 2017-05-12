@@ -73,6 +73,9 @@ dist/save.json: templates/.save.json $(call all_src_outputs)
 	@for source in $(call all_src_outputs); do\
 		/bin/bash templates/.import.sh $$source;\
 	done
+	@echo "Updating last modified date..."
+	@jq --arg date "$$(date +"%D %r")" '.Date=$$date' "dist/save.json" > dist/.save.json
+	@mv -f "dist/.save.json" "dist/save.json"
 	@echo "Finished creating save file"
 
 templates/.save.json: templates/manifest.json $(call all_manifest_inputs)
