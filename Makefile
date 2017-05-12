@@ -47,17 +47,9 @@ testdist: libraries dist
 	@busted -Xhelper="--use-dist"
 
 resources:
-	@echo "Clearing staged changes..."
-	@git reset
-	@echo "Adding resources to commit..."
-	@git add resources/*
-	@if git commit -m "Updating resources"; then\
-		echo "Pushing to gh-pages...";\
-		git subtree push --prefix resources origin gh-pages;\
-		echo "Done!";\
-	else\
-		echo "Resources already up to date.";\
-	fi
+	echo "Pushing to gh-pages..."
+	git subtree push --prefix resources origin gh-pages
+	echo "Done!"
 
 # Build Rules
 build/%.lua: src/%.moon
