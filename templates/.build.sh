@@ -19,7 +19,7 @@ for ((i=0; i<$(jq '.|length' "templates/manifest.json"); i++)); do
   elif [ "$type" == "\"object\"" ]; then
     name="$(jq '.as' <(echo "$value"))"
     name="$(strip_quotes "$name")"
-    jq --arg name "$name" '[.,{($name|tostring):[]}]|add' ".save.json" > "templates/.temp.json"
+    jq --arg name "$name" '[.,{($name|tostring):[]}]|add' "templates/.save.json" > "templates/.temp.json"
     mv -f "templates/.temp.json" "templates/.save.json"
     echo "Building $name array..."
     for ((j=0; j<$(jq --arg i "$i" '.[($i|tonumber)].values|length' "templates/manifest.json"); j++)); do
