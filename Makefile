@@ -47,9 +47,9 @@ testdist: libraries dist
 	@busted -Xhelper="--use-dist"
 
 resources:
-	echo "Pushing to gh-pages..."
-	git subtree push --prefix resources origin gh-pages
-	echo "Done!"
+	@echo "Pushing to gh-pages..."
+	@git subtree push --prefix resources origin gh-pages
+	@echo "Done!"
 
 # Build Rules
 build/%.lua: src/%.moon
