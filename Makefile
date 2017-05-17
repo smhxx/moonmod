@@ -1,6 +1,6 @@
 SHELL := /bin/bash
 
-fix_path = $(shell sed -n -e ":loop" -e "s;[^/]*/\.\./;;g" -e "t loop" -e "p" <(echo "$(1)"))
+fix_path = $(shell sed -n -e ":loop" -e "s;[^/ ]*/\.\./;;g" -e "t loop" -e "p" <(echo "$(1)"))
 get_output = $(call fix_path,$(shell sed -n "/^Output \".*\"/s;^.*\"\(.*\)\".*;$(call get_out_prefix,"$(1)")\1;p" "$(1)"))
 get_inputs = $(call fix_path,$(shell sed -n "/^Main \".*\"/s;^.*\"\(.*\)\".*;$(call get_ins_prefix,"$(1)")/\1;p" "$(1)"))
 get_out_prefix = $(shell sed -rn "s;^(.*(^|\/))(src|build)\/.*;\1;p" <(echo "$(1)"))
@@ -43,6 +43,7 @@ test: SILENT:="-s"
 test: libraries
 	@busted
 
+testdist: SILENT:="-s"
 testdist: libraries dist
 	@busted -Xhelper="--use-dist"
 
@@ -84,6 +85,7 @@ templates/.save.json: templates/manifest.json $(call all_manifest_inputs)
 	@echo "Finished building save template"
 
 .SECONDEXPANSION:
+dist/%.lua: SILENT:="-s"
 dist/%.lua: $$(call get_bld_squishy,$$@) $$(call get_inputs,$$(call get_src_squishy,$$@))
 	@mkdir -p $(@D)
 	@squish $(shell dirname $<)
